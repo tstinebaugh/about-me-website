@@ -51,6 +51,9 @@ export const Contact = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
+      console.log("RECAPTCHA_SITE_KEY is not set");
+    }
     if (!isVerified) {
       setSnackbar({
         open: true,

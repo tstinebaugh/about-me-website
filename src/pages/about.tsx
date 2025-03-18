@@ -23,9 +23,16 @@ export default function About() {
                   Background
                 </Typography>
                 <Typography variant="body1" component="p" sx={{ mb: 2 }}>
-                  [Your background story here] Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua.
+                  My passion for technology began early, building my first
+                  computer at age six. After earning a Bachelor of Science in
+                  Computer Science and Systems from the University of
+                  Washington, I&apos;ve pursued a dynamic career as a Software
+                  Engineer, Test Engineer, and AI Prompt Engineer. I&apos;m
+                  driven by a commitment to innovative problem-solving,
+                  continuous learning, and creating software solutions that make
+                  a meaningful impact. My technical expertise is matched by my
+                  enthusiasm for emerging technologies and collaborative
+                  development.
                 </Typography>
               </Paper>
 
@@ -34,10 +41,20 @@ export default function About() {
                   Education
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
-                  University Name
+                  University of Washington
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ mb: 1.5 }}
+                >
+                  B.S. Computer Science and Systems • 2013 - 2017
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                  Chinese University of Hong Kong
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Degree • Year - Year
+                  Semester Abroad • 2016
                 </Typography>
               </Paper>
             </Grid2>
@@ -49,12 +66,21 @@ export default function About() {
                 </Typography>
                 <Grid2 container spacing={2}>
                   {[
-                    "JavaScript",
                     "TypeScript",
                     "React",
                     "Node.js",
                     "Python",
+                    "Golang",
                     "SQL",
+                    "PostgreSQL",
+                    "Next.js",
+                    "AWS",
+                    "CI/CD",
+                    "git",
+                    "bash/shell",
+                    "Kubernetes/Docker",
+                    "Test-Driven Design & Development",
+                    "Infrastructure as code (IAC)",
                   ].map((skill) => (
                     <Grid2 key={skill}>
                       <Paper sx={{ p: 1, bgcolor: "primary.main" }}>
@@ -70,8 +96,11 @@ export default function About() {
                   Interests
                 </Typography>
                 <Typography variant="body1" component="p" sx={{ mb: 2 }}>
-                  [Your interests and hobbies] Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit.
+                  Outside of software engineering, I enjoy traveling, connecting
+                  with nature via hiking, camping, and off-roading, building
+                  meaningful connections with friends and family, and
+                  challenging myself to grow and try new things. I&apos;m
+                  currently studying three languages.
                 </Typography>
               </Paper>
             </Grid2>

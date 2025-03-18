@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import {
   Typography,
   Box,
@@ -18,14 +17,38 @@ import LaunchIcon from "@mui/icons-material/Launch";
 
 const projects = [
   {
-    title: "Project 1",
-    description: "Description of project 1",
-    image: "/project1.jpg",
-    technologies: ["React", "TypeScript", "Node.js"],
-    githubUrl: "https://github.com/yourusername/project1",
-    liveUrl: "https://project1.com",
+    title: "Image Search and Download App",
+    description: "Searches the web for images and allows bulk downloading",
+    image: "../../image_search_app.png",
+    technologies: ["React", "Node.js", "TypeScript", "REST APIs"],
+    githubUrl: "https://github.com/tstinebaugh/image-search-app",
+    liveUrl: "https://image-search-app-rho-beryl.vercel.app/",
   },
-  // Add more projects here
+  {
+    title: "Agent Browser App",
+    description:
+      "Create and browse network agents and modify them from a web UI",
+    image: "../../agent_app.png",
+    technologies: ["React", "Node.js", "TypeScript"],
+    githubUrl: "https://github.com/tstinebaugh/agent-app",
+    liveUrl: "",
+  },
+  {
+    title: "Fullstack Open Course",
+    description: "Completed Fullstack Open course @ University of Helsinki",
+    image: "../../fullstackopen.svg",
+    technologies: [
+      "React",
+      "Redux",
+      "Node.js",
+      "MongoDB",
+      "TypeScript",
+      "Cypress",
+      "GraphQL",
+    ],
+    githubUrl: "https://github.com/tstinebaugh/fullstackopencoursework",
+    liveUrl: "",
+  },
 ];
 
 const container = {
@@ -69,7 +92,10 @@ export default function Projects() {
                   >
                     <CardMedia
                       component="img"
-                      height="200"
+                      sx={{
+                        height: { xs: "150px", sm: "200px", md: "250px" },
+                        objectFit: "contain",
+                      }}
                       image={project.image}
                       alt={project.title}
                     />
@@ -92,22 +118,26 @@ export default function Projects() {
                       </Stack>
                     </CardContent>
                     <CardActions>
-                      <Button
-                        size="small"
-                        startIcon={<GitHubIcon />}
-                        href={project.githubUrl}
-                        target="_blank"
-                      >
-                        Code
-                      </Button>
-                      <Button
-                        size="small"
-                        startIcon={<LaunchIcon />}
-                        href={project.liveUrl}
-                        target="_blank"
-                      >
-                        Live Demo
-                      </Button>
+                      {project.githubUrl && (
+                        <Button
+                          size="small"
+                          startIcon={<GitHubIcon />}
+                          href={project.githubUrl}
+                          target="_blank"
+                        >
+                          Code
+                        </Button>
+                      )}
+                      {project.liveUrl && (
+                        <Button
+                          size="small"
+                          startIcon={<LaunchIcon />}
+                          href={project.liveUrl}
+                          target="_blank"
+                        >
+                          Live Demo
+                        </Button>
+                      )}
                     </CardActions>
                   </Card>
                 </motion.div>

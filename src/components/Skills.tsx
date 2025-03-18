@@ -7,7 +7,6 @@ import {
   Cloud as CloudIcon,
 } from "@mui/icons-material";
 
-// Styled component for the animated card
 const AnimatedCard = styled(motion.div)(({ theme }) => ({
   height: "100%",
   backgroundColor: theme.palette.background.paper,
@@ -44,28 +43,27 @@ const itemVariants = {
   },
 };
 
-// Skills section component
-const Skills = () => {
+export const Skills = () => {
   const skills = [
     {
       title: "Frontend Development",
       icon: <CodeIcon sx={{ fontSize: 40 }} />,
-      description: "React, Next.js, TypeScript",
+      description: "React, Redux, Next.js, TypeScript, JavaScript",
     },
     {
       title: "Backend Development",
       icon: <StorageIcon sx={{ fontSize: 40 }} />,
-      description: "Node.js, Express, Python",
+      description: "Golang, Node.js, Python",
     },
     {
       title: "Database Management",
       icon: <StorageIcon sx={{ fontSize: 40 }} />,
-      description: "MongoDB, PostgreSQL",
+      description: "MongoDB, PostgreSQL, Redis",
     },
     {
       title: "Cloud Services",
       icon: <CloudIcon sx={{ fontSize: 40 }} />,
-      description: "AWS, Firebase, Vercel",
+      description: "AWS, Vercel, GCP",
     },
   ];
 
@@ -120,4 +118,3 @@ const Skills = () => {
     </Box>
   );
 };
-export default Skills;

@@ -56,13 +56,39 @@ export const Contact = () => {
         message: "Please verify CAPTCHA before sending a message",
         severity: "error",
       });
-    } else {
+      return;
+    }
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSnackbar({
+          open: true,
+          message: "Message sent successfully!",
+          severity: "success",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const errorData = await response.json();
+        setSnackbar({
+          open: true,
+          message: errorData.message || "Failed to send message.",
+          severity: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
       setSnackbar({
         open: true,
-        message: "Message sent successfully!",
-        severity: "success",
+        message: "An error occurred while sending the message.",
+        severity: "error",
       });
-      setFormData({ name: "", email: "", message: "" });
     }
   };
 

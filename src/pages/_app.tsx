@@ -7,16 +7,14 @@ import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <SpeedInsights />
-      <Analytics />
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Layout>
+        <Component {...pageProps} />
+        <SpeedInsights />
+        <Analytics />
+      </Layout>
+    </ThemeProvider>
   );
 }
 

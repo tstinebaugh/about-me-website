@@ -17,6 +17,15 @@ import LaunchIcon from "@mui/icons-material/Launch";
 
 const projects = [
   {
+    title: "Glycemic Index Database",
+    description:
+      "An easily searchable, clear and intuitive database for looking at different foods' glycemic index and glycemic load with advanced filtering capabilities",
+    image: "../../glycemic_index.png",
+    technologies: ["React", "TypeScript", "FastAPI", "PostgreSQL"],
+    githubUrl: "",
+    liveUrl: "https://glycemic-index.vercel.app/",
+  },
+  {
     title: "Image Search and Download App",
     description: "Searches the web for images and allows bulk downloading",
     image: "../../image_search_app.png",

@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={darkTheme}>
       <Head>
+        <title>Travis Stinebaugh - Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <CssBaseline />

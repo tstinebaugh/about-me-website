@@ -72,6 +72,33 @@ export default function Resume() {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
+                      <Typography variant="h6">Appraisal Bureau</Typography>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Senior Full Stack Software Engineer • Mar 2025 – Nov
+                        2025
+                      </Typography>
+                      <Typography variant="body2" sx={{ mt: 1 }}>
+                        • Successfully launched Appraisal Bureau progressive web
+                        app for managing fine artwork inventory, leveraging Strapi
+                        for content management and Stripe for payment solutions,
+                        written with Typescript, Next.js and React
+                        <br />• Added support for charitable artwork donations,
+                        owning feature end-to-end and complying with IRS
+                        regulations
+                        <br />• Built high-throughput media upload service using
+                        AWS S3 and Lambda to eliminate timeout errors
+                        <br />• Created unit, functional, and integration tests
+                        in Jest, and added automated UI test coverage with
+                        Cypress
+                      </Typography>
+                    </TimelineContent>
+                  </TimelineItem>
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot color="primary" />
+                      <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent>
                       <Typography variant="h6">Outlier.ai</Typography>
                       <Typography variant="subtitle2" color="text.secondary">
                         Freelance AI Prompt Engineer & Code Reviewer • Jan 2024

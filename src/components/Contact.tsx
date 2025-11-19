@@ -191,22 +191,22 @@ export const Contact = () => {
 
             <Box sx={{ mt: 4, textAlign: "center" }}>
               <IconButton
-                href="https://github.com/tstinebaugh"
-                target="_blank"
-                rel="noopener noreferrer"
-                size="large"
-              >
-                <GitHubIcon fontSize="large" />
+                  href="https://github.com/tstinebaugh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  aria-label="GitHub profile"
+                >                <GitHubIcon fontSize="large" />
               </IconButton>
               <IconButton
-                href="https://www.linkedin.com/in/travisstinebaugh/"
-                target="_blank"
-                rel="noopener noreferrer"
-                size="large"
-              >
-                <LinkedInIcon fontSize="large" />
+                  href="https://www.linkedin.com/in/travisstinebaugh/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  aria-label="LinkedIn profile"
+                >                <LinkedInIcon fontSize="large" />
               </IconButton>
-              <IconButton size="large" onClick={handleEmailClick}>
+              <IconButton size="large" onClick={handleEmailClick} aria-label="Send email">
                 <EmailIcon fontSize="large" />
               </IconButton>
             </Box>
@@ -229,3 +229,4 @@ export const Contact = () => {
     </>
   );
 };
+

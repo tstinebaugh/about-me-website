@@ -79,9 +79,9 @@ export default function Resume() {
                       </Typography>
                       <Typography variant="body2" sx={{ mt: 1 }}>
                         • Successfully launched Appraisal Bureau progressive web
-                        app for managing fine artwork inventory, leveraging Strapi
-                        for content management and Stripe for payment solutions,
-                        written with Typescript, Next.js and React
+                        app for managing fine artwork inventory, leveraging
+                        Strapi for content management and Stripe for payment
+                        solutions, written with Typescript, Next.js and React
                         <br />• Added support for charitable artwork donations,
                         owning feature end-to-end and complying with IRS
                         regulations
@@ -259,6 +259,37 @@ export default function Resume() {
                       </Typography>
                     </TimelineContent>
                   </TimelineItem>
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot color="primary" />
+                      <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <Typography variant="h6">
+                        Fullstack Open Course, University of Helsinki
+                      </Typography>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        2022-2024{" "}
+                        <a
+                          href="https://github.com/tstinebaugh/fullstackopencoursework"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "inherit", textDecoration: "underline" }}
+                        >
+                          GitHub Repo
+                        </a>
+                      </Typography>
+                      <Typography variant="body2" sx={{ mt: 1 }}>
+                        • Learned the MERN stack (MongoDB, Express.js, React,
+                        Next.js) to create Progressive Web Apps (PWAs) and Single
+                        Page Apps (SPAs)
+                        <br />• Also learned Jest, Mocha, Cypress, Redux, GraphQL,
+                        and React Native.
+                        <br />• Gained additional insight into Typescript, node.js,
+                        HTML, CSS, CI/CD, and relational databases
+                      </Typography>
+                    </TimelineContent>
+                  </TimelineItem>
                   {/* Add more education items */}
                 </Timeline>
               </Paper>
@@ -302,7 +333,7 @@ export default function Resume() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   English: Native Proficiency <br />
-                  Japanese: JLPT N4 (currently studying/working toward N3) <br />
+                  Japanese: JLPT N4 (currently studying toward N3) <br />
                 </Typography>
               </Paper>
 

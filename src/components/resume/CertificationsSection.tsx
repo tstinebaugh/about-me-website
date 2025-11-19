@@ -1,4 +1,4 @@
-import { Typography, Paper, Box } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { Certification } from "../../data/resume"; // Adjust path as needed
 
 interface CertificationsSectionProps {

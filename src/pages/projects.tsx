@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LaunchIcon from "@mui/icons-material/Launch";
 
-import { projects, Project } from "../data/projects";
+import { projects } from "../data/projects";
 
 const container = {
   hidden: { opacity: 0 },

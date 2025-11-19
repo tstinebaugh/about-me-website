@@ -22,8 +22,10 @@ export default async function handler(
   // Apply rate limiting
   try {
     await limiter.check(req, res);
-  } catch (error) {
-    return res.status(429).json({ message: "Too many requests. Please try again later." });
+  } catch (_error) {
+    // _error is of type unknown by default in TypeScript 4.4+
+    const errorMessage = (_error instanceof Error) ? _error.message : "An unknown rate limiting error occurred.";
+    return res.status(429).json({ message: errorMessage });
   }
 
   try {
@@ -62,8 +64,10 @@ export default async function handler(
     });
 
     res.status(200).json({ message: "Message sent successfully" });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ message: "Failed to send message" });
+  } catch (_error) {
+    // _error is of type unknown by default in TypeScript 4.4+
+    console.error("Error sending email:", _error);
+    const errorMessage = (_error instanceof Error) ? _error.message : "An unknown error occurred while sending the email.";
+    res.status(500).json({ message: errorMessage });
   }
 }

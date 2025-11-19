@@ -1,4 +1,4 @@
-import { Typography, Paper, Box } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { SkillCategory, Language } from "../../data/resume"; // Adjust path as needed
 
 interface SkillsSectionProps {

@@ -1,7 +1,7 @@
 // pages/api/contact.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
-import { NextRateLimit } from "next-rate-limit"; // Import NextRateLimit
+import NextRateLimit from "next-rate-limit"; // Import NextRateLimit
 
 // Initialize the rate limiter with desired options
 // Example: 10 requests per 10 minutes (600 seconds) per IP address

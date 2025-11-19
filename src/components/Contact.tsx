@@ -26,6 +26,7 @@ interface FormData {
   name: string;
   email: string;
   message: string;
+  honeypot: string; // Add honeypot field
 }
 
 interface SnackbarState {
@@ -39,6 +40,7 @@ export const Contact = () => {
     name: "",
     email: "",
     message: "",
+    honeypot: "", // Initialize honeypot
   });
 
   const [snackbar, setSnackbar] = useState<SnackbarState>({
@@ -77,7 +79,7 @@ export const Contact = () => {
           message: "Message sent successfully!",
           severity: "success",
         });
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", honeypot: "" }); // Clear honeypot as well
       } else {
         const errorData = await response.json();
         setSnackbar({
@@ -152,6 +154,17 @@ export const Contact = () => {
                       setFormData({ ...formData, email: e.target.value })
                     }
                     required
+                  />
+                </Grid2>
+                {/* Honeypot field */}
+                <Grid2 size={{ xs: 12 }} sx={{ display: 'none' }}>
+                  <TextField
+                    fullWidth
+                    label="Leave this field empty"
+                    value={formData.honeypot}
+                    onChange={(e) =>
+                      setFormData({ ...formData, honeypot: e.target.value })
+                    }
                   />
                 </Grid2>
                 <Grid2 size={{ xs: 12 }}>

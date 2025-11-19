@@ -53,7 +53,11 @@ const Navbar = () => {
           p: 2,
         }}
       >
-        <IconButton onClick={handleDrawerToggle} sx={{ color: "white" }}>
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{ color: "white" }}
+          aria-label="close drawer"
+        >
           <CloseIcon />
         </IconButton>
       </Box>

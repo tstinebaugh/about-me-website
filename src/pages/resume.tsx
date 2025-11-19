@@ -302,9 +302,7 @@ export default function Resume() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   English: Native Proficiency <br />
-                  Japanese: Intermediate Proficiency <br />
-                  Spanish: Elementary Proficiency <br />
-                  Tagalog: Basic Proficiency <br />
+                  Japanese: JLPT N4 (currently studying/working toward N3) <br />
                 </Typography>
               </Paper>
 

@@ -1,15 +1,6 @@
 // pages/api/contact.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
-import NextRateLimit from "next-rate-limit"; // Import NextRateLimit
-
-// Initialize the rate limiter with desired options
-// Example: 10 requests per 10 minutes (600 seconds) per IP address
-const limiter = new NextRateLimit({
-  interval: 60 * 10 * 1000, // 10 minutes
-  uniqueToken: "contact_form_limit", // A unique string to identify this limiter
-  maxRequests: 10, // Max 10 requests per interval
-});
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,23 +10,8 @@ export default async function handler(
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  // Apply rate limiting
   try {
-    await limiter.check(req, res);
-  } catch (_error) {
-    // _error is of type unknown by default in TypeScript 4.4+
-    const errorMessage = (_error instanceof Error) ? _error.message : "An unknown rate limiting error occurred.";
-    return res.status(429).json({ message: errorMessage });
-  }
-
-  try {
-    const { name, email, message, honeypot } = req.body;
-
-    // Honeypot check
-    if (honeypot) {
-      console.log("Honeypot field filled, likely a bot.");
-      return res.status(200).json({ message: "Message sent successfully" }); // Return success to avoid tipping off bots
-    }
+    const { name, email, message } = req.body;
 
     // Create a transporter using your email provider's SMTP settings
     const transporter = nodemailer.createTransport({
@@ -64,10 +40,8 @@ export default async function handler(
     });
 
     res.status(200).json({ message: "Message sent successfully" });
-  } catch (_error) {
-    // _error is of type unknown by default in TypeScript 4.4+
-    console.error("Error sending email:", _error);
-    const errorMessage = (_error instanceof Error) ? _error.message : "An unknown error occurred while sending the email.";
-    res.status(500).json({ message: errorMessage });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Failed to send message" });
   }
 }

@@ -9,6 +9,38 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Schwab Factor Investor & Dynamic Rebalancer",
+    description:
+      "An automated investment and portfolio rebalancing CLI tool powered by the Charles Schwab Trader API and schwab-py. Executes buy-only dynamic rebalancing against multi-factor ETF allocations with macOS Keychain credential encryption and cron automation.",
+    image: "/schwab_investor_cli.png",
+    technologies: [
+      "Python",
+      "Charles Schwab API",
+      "macOS Keychain",
+      "OAuth 2.0",
+      "Financial Modeling",
+      "CLI",
+    ],
+    githubUrl: "https://github.com/tstinebaugh/schwab-investor",
+    liveUrl: "",
+  },
+  {
+    title: "SBI Shinsei Bank to Monarch Money Syncer",
+    description:
+      "A lightweight, secure browser extension and Python native messaging host that bridges SBI Shinsei Bank (Japan) balances to Monarch Money (US) in real-time with zero-cloud Apple Keychain security and live spot FX rates.",
+    image: "/sbi_monarch_sync.png",
+    technologies: [
+      "TypeScript",
+      "Python",
+      "Manifest V3",
+      "GraphQL",
+      "macOS Keychain",
+      "Native Messaging",
+    ],
+    githubUrl: "https://github.com/tstinebaugh/sbi-monarch-link",
+    liveUrl: "",
+  },
+  {
     title: "Glycemic Index Database",
     description:
       "An easily searchable, clear and intuitive database for looking at different foods' glycemic index and glycemic load with advanced filtering capabilities",

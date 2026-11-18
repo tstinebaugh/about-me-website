@@ -5,6 +5,7 @@ import hero from "../../public/profile_alaska.jpeg";
 import Link from "next/link";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 
 export const Hero = () => {
   return (
@@ -92,7 +93,7 @@ export const Hero = () => {
                 sx={{
                   fontSize: { xs: "1.05rem", md: "1.15rem" },
                   color: "text.secondary",
-                  mb: 3.5,
+                  mb: 2,
                   maxWidth: "580px",
                   lineHeight: 1.7,
                 }}
@@ -100,6 +101,24 @@ export const Hero = () => {
                 I specialize in architecting scalable backend microservices, high-throughput data
                 pipelines, and responsive full-stack web applications with Golang, TypeScript,
                 Python, React/Next.js, and AWS.
+              </Typography>
+
+              <Typography
+                component="p"
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 1,
+                  color: "text.secondary",
+                  fontSize: "0.95rem",
+                  mb: 3.5,
+                }}
+              >
+                <PlaceOutlinedIcon sx={{ fontSize: 20, mt: "2px", color: "#a5b4fc" }} aria-hidden />
+                <span>
+                  Based in Fukuoka, Japan (JST) · Valid Japanese work visa · Native English,
+                  Japanese JLPT N4
+                </span>
               </Typography>
 
               <Stack

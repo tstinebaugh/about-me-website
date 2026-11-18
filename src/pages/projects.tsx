@@ -166,9 +166,9 @@ export default function Projects() {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Source code for ${project.title} on GitHub`}
+                            aria-label={`${project.githubLabel ?? "Source code"} for ${project.title} on GitHub`}
                           >
-                            Source Code
+                            {project.githubLabel ?? "Source Code"}
                           </Button>
                         )}
                         {project.liveUrl && (

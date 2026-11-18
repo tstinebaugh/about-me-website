@@ -5,6 +5,8 @@ export interface Project {
   technologies: string[];
   /** Public source repository. Leave unset for private repos. */
   githubUrl?: string;
+  /** Button text for githubUrl. Defaults to "Source Code". */
+  githubLabel?: string;
   /** Deployed site or demo. */
   liveUrl?: string;
   /** Source lives in a private repository (shows a "Private repo" badge instead of a link). */
@@ -83,6 +85,15 @@ export const projects: Project[] = [
       "GitHub Actions",
     ],
     githubUrl: "https://github.com/tstinebaugh/schwab-auto-investor",
+  },
+  {
+    title: "Open Source: rickb777/date (Go)",
+    description:
+      "While building Discovery+ ingestion, I needed ISO 8601 durations with millisecond precision, which the Go date package's Period type couldn't represent. I opened a pull request adding backward-compatible millisecond-precision period types with tests (+339 lines). The maintainer chose to rewrite Period as the standalone rickb777/period package and noted that it incorporates the PR indirectly.",
+    image: "/rickb777_date_pr.png",
+    technologies: ["Go", "ISO 8601", "Open Source", "Unit Testing"],
+    githubUrl: "https://github.com/rickb777/date/pull/21",
+    githubLabel: "View Pull Request",
   },
   {
     title: "Glycemic Index Database",

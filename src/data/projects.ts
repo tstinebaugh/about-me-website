@@ -17,7 +17,7 @@ export const projects: Project[] = [
   {
     title: "SplitRent",
     description:
-      "A SaaS app that takes the bookkeeping out of shared housing. Tenants forward utility bills by email, an LLM pipeline extracts the amounts in memory (bills are never stored), and SplitRent prorates rent and utilities, issues itemized monthly invoices, and tracks who has paid.",
+      "A production app that takes the bookkeeping out of shared housing. Tenants forward utility bills by email, an LLM pipeline (Gemini, OpenAI or Anthropic behind one interface) extracts the amounts in memory so bills are never stored, and SplitRent prorates rent and utilities, issues itemized monthly invoices, and tracks who has paid.",
     image: "/splitrent.png",
     technologies: [
       "Next.js",
@@ -26,6 +26,7 @@ export const projects: Project[] = [
       "Prisma",
       "Supabase Auth",
       "Stripe",
+      "Resend",
       "LLM Parsing",
       "Playwright",
     ],
@@ -36,7 +37,7 @@ export const projects: Project[] = [
   {
     title: "Anki Leech Doctor & Mnemonic Studio",
     description:
-      "An open-source AI copilot for Anki that rescues Japanese \"leech\" cards. It connects to a local Anki instance, breaks kanji down into radicals, writes mnemonics and example sentences at a chosen JLPT level, and syncs changes back to Anki. A local multi-vector search over semantic, visual (Unicode IDS radical trees for 27k+ kanji) and phonetic similarity flags look-alike words across decks.",
+      "An open-source AI copilot for Anki that rescues Japanese \"leech\" cards. It connects to a local Anki instance, breaks kanji down into radicals, writes mnemonics and example sentences at a chosen JLPT level, and syncs them back to the deck. A local multi-vector index (TF-IDF semantic, kanji-structure from Unicode IDS trees for 27k+ characters, and phonetic edit distance) flags look-alike cards across decks with no external API calls.",
     image: "/anki_leech_doctor.png",
     technologies: [
       "Python",
@@ -45,16 +46,17 @@ export const projects: Project[] = [
       "RAG",
       "NumPy",
       "AnkiConnect",
-      "JavaScript",
       "pytest",
+      "Ruff",
+      "GitHub Actions",
     ],
     githubUrl: "https://github.com/tstinebaugh/anki-leech-doctor",
   },
   {
     title: "SBI Shinsei Bank to Monarch Money Syncer",
     description:
-      "A Chromium extension and local Python native-messaging host that syncs an SBI Shinsei Bank (JPY) balance into Monarch Money (USD) at the live spot rate. The session is kept in the macOS Keychain, the extension never sees Monarch credentials, and nothing runs in the cloud.",
-    image: "/sbi_monarch_sync.png",
+      "A Chrome/Brave/Edge extension and local Python native-messaging host that syncs an SBI Shinsei Bank (JPY) balance into Monarch Money (USD) at the live spot rate in one click. It reuses the browser's Monarch login so the extension never handles a password, keeps the session in the macOS Keychain, and runs nothing on third-party servers.",
+    image: "/sbi_monarch_link.png",
     technologies: [
       "JavaScript",
       "Python",
@@ -67,19 +69,20 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/tstinebaugh/sbi-monarch-link",
   },
   {
-    title: "Schwab Factor Investor & Dynamic Rebalancer",
+    title: "Schwab Auto-Investor",
     description:
-      "An automated investment and portfolio rebalancing CLI tool powered by the Charles Schwab Trader API and schwab-py. Executes buy-only dynamic rebalancing against multi-factor ETF allocations with macOS Keychain credential encryption and cron automation.",
-    image: "/schwab_investor_cli.png",
+      "An open-source CLI that invests idle cash in a Charles Schwab account toward a target ETF allocation using the official Trader API. Buy-only rebalancing sends new money to the most underweight holdings without ever selling, with exact Decimal math, whole-share allocation, dry-run mode, typed confirmation before live orders, and API keys kept in the OS keychain.",
+    image: "/schwab_auto_investor.png",
     technologies: [
       "Python",
-      "Charles Schwab API",
-      "macOS Keychain",
+      "Schwab Trader API",
       "OAuth 2.0",
-      "Financial Modeling",
+      "OS Keychain",
       "CLI",
+      "pytest",
+      "GitHub Actions",
     ],
-    privateRepo: true,
+    githubUrl: "https://github.com/tstinebaugh/schwab-auto-investor",
   },
   {
     title: "Glycemic Index Database",

@@ -1,32 +1,10 @@
 import { Typography, Box, Grid2, Card, CardContent, Chip, Stack } from "@mui/material";
-import { motion } from "framer-motion";
 import {
   Code as CodeIcon,
   Storage as StorageIcon,
   Cloud as CloudIcon,
   Hub as HubIcon,
 } from "@mui/icons-material";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.35,
-    },
-  },
-};
 
 export const Skills = () => {
   const skillCategories = [
@@ -79,16 +57,11 @@ export const Skills = () => {
         </Typography>
       </Box>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
+      <div>
         <Grid2 container spacing={3}>
           {skillCategories.map((cat, index) => (
             <Grid2 size={{ xs: 12, sm: 6, lg: 3 }} key={index}>
-              <motion.div variants={itemVariants} style={{ height: "100%" }}>
+              <div style={{ height: "100%" }}>
                 <Card
                   sx={{
                     height: "100%",
@@ -98,11 +71,9 @@ export const Skills = () => {
                     backgroundColor: "#111827",
                     border: "1px solid rgba(255, 255, 255, 0.08)",
                     borderRadius: 3,
-                    transition: "all 0.2s ease-in-out",
-                    "&:hover": {
-                      borderColor: "rgba(99, 102, 241, 0.4)",
-                      transform: "translateY(-4px)",
-                      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4)",
+                    transition: "border-color 0.15s ease-out",
+                    "@media (hover: hover)": {
+                      "&:hover": { borderColor: "rgba(99, 102, 241, 0.4)" },
                     },
                   }}
                 >
@@ -152,11 +123,11 @@ export const Skills = () => {
                     </Stack>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </Grid2>
           ))}
         </Grid2>
-      </motion.div>
+      </div>
     </Box>
   );
 };

@@ -8,7 +8,7 @@ import {
   IconButton,
   Drawer,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   Typography,
 } from "@mui/material";
@@ -30,11 +30,6 @@ const Navbar = () => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleNavClick = (path: string) => {
-    router.push(path);
-    setMobileOpen(false);
   };
 
   // Mobile drawer content
@@ -81,7 +76,7 @@ const Navbar = () => {
         <IconButton
           onClick={handleDrawerToggle}
           sx={{ color: "text.secondary" }}
-          aria-label="close drawer"
+          aria-label="Close navigation menu"
         >
           <CloseIcon />
         </IconButton>
@@ -90,9 +85,12 @@ const Navbar = () => {
         {navItems.map((item) => {
           const isActive = router.pathname === item.path;
           return (
-            <ListItem
+            <ListItemButton
               key={item.path}
-              onClick={() => handleNavClick(item.path)}
+              component={Link}
+              href={item.path}
+              onClick={() => setMobileOpen(false)}
+              aria-current={isActive ? "page" : undefined}
               sx={{
                 backgroundColor: isActive
                   ? "rgba(99, 102, 241, 0.12)"
@@ -102,7 +100,6 @@ const Navbar = () => {
                   : "1px solid transparent",
                 "&:hover": {
                   backgroundColor: "rgba(255, 255, 255, 0.06)",
-                  cursor: "pointer",
                 },
                 my: 1,
                 borderRadius: "8px",
@@ -118,7 +115,7 @@ const Navbar = () => {
                   },
                 }}
               />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>
@@ -130,8 +127,7 @@ const Navbar = () => {
       position="sticky"
       elevation={0}
       sx={{
-        backgroundColor: "rgba(11, 15, 25, 0.8)",
-        backdropFilter: "blur(16px)",
+        backgroundColor: "#0b0f19",
         borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
       }}
     >
@@ -147,6 +143,7 @@ const Navbar = () => {
           {/* Logo & Brand Monogram */}
           <Link
             href="/"
+            aria-label="Travis Stinebaugh, home"
             style={{
               textDecoration: "none",
               display: "flex",
@@ -191,7 +188,7 @@ const Navbar = () => {
                   fontSize: "0.75rem",
                 }}
               >
-                Senior Full Stack Engineer
+                Senior Full Stack & Backend Engineer
               </Typography>
             </Box>
           </Link>
@@ -201,37 +198,34 @@ const Navbar = () => {
             {navItems.map((item) => {
               const isActive = router.pathname === item.path;
               return (
-                <Link
+                <Button
+                  component={Link}
                   href={item.path}
                   key={item.path}
-                  passHref
-                  style={{ textDecoration: "none" }}
+                  aria-current={isActive ? "page" : undefined}
+                  sx={{
+                    backgroundColor: isActive
+                      ? "rgba(99, 102, 241, 0.12)"
+                      : "transparent",
+                    border: isActive
+                      ? "1px solid rgba(99, 102, 241, 0.3)"
+                      : "1px solid transparent",
+                    color: isActive ? "#818cf8" : "text.secondary",
+                    "&:hover": {
+                      backgroundColor: "rgba(255, 255, 255, 0.06)",
+                      color: "#ffffff",
+                    },
+                    textTransform: "none",
+                    fontSize: "0.925rem",
+                    fontWeight: isActive ? 600 : 500,
+                    px: 2.25,
+                    py: 0.75,
+                    borderRadius: "8px",
+                    transition: "all 0.15s ease-in-out",
+                  }}
                 >
-                  <Button
-                    sx={{
-                      backgroundColor: isActive
-                        ? "rgba(99, 102, 241, 0.12)"
-                        : "transparent",
-                      border: isActive
-                        ? "1px solid rgba(99, 102, 241, 0.3)"
-                        : "1px solid transparent",
-                      color: isActive ? "#818cf8" : "text.secondary",
-                      "&:hover": {
-                        backgroundColor: "rgba(255, 255, 255, 0.06)",
-                        color: "#ffffff",
-                      },
-                      textTransform: "none",
-                      fontSize: "0.925rem",
-                      fontWeight: isActive ? 600 : 500,
-                      px: 2.25,
-                      py: 0.75,
-                      borderRadius: "8px",
-                      transition: "all 0.15s ease-in-out",
-                    }}
-                  >
-                    {item.label}
-                  </Button>
-                </Link>
+                  {item.label}
+                </Button>
               );
             })}
           </Box>
@@ -239,7 +233,8 @@ const Navbar = () => {
           {/* Hamburger Menu Icon for Mobile */}
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label="Open navigation menu"
+          aria-expanded={mobileOpen}
             edge="start"
             onClick={handleDrawerToggle}
             sx={{

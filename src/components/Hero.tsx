@@ -1,20 +1,14 @@
-import { Typography, Box, Button, Stack, Chip } from "@mui/material";
+import { Typography, Box, Button, Stack } from "@mui/material";
 import { Grid2 } from "@mui/material";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import hero from "../../public/profile_alaska.jpeg";
 import Link from "next/link";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
 export const Hero = () => {
   return (
-    <motion.div variants={fadeIn} initial="initial" animate="animate">
+    <div>
       <Box
         sx={{
           py: { xs: 4, md: 8 },
@@ -25,20 +19,37 @@ export const Hero = () => {
         <Grid2 container spacing={{ xs: 4, md: 6 }} alignItems="center">
           <Grid2 size={{ xs: 12, md: 7 }}>
             <Box>
-              <Chip
-                label="Senior Full Stack & Backend Engineer"
-                size="small"
+              <Box
                 sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 1,
                   mb: 2.5,
-                  px: 1,
-                  py: 0.5,
+                  px: 1.5,
+                  py: 0.625,
+                  borderRadius: "999px",
                   fontSize: "0.825rem",
                   fontWeight: 600,
-                  backgroundColor: "rgba(99, 102, 241, 0.12)",
-                  color: "#818cf8",
-                  border: "1px solid rgba(99, 102, 241, 0.28)",
+                  lineHeight: 1.4,
+                  backgroundColor: "rgba(16, 185, 129, 0.1)",
+                  color: "#6ee7b7",
+                  border: "1px solid rgba(16, 185, 129, 0.3)",
                 }}
-              />
+              >
+                <Box
+                  component="span"
+                  aria-hidden
+                  sx={{
+                    width: 8,
+                    height: 8,
+                    flexShrink: 0,
+                    borderRadius: "50%",
+                    backgroundColor: "#34d399",
+                    boxShadow: "0 0 0 3px rgba(52, 211, 153, 0.2)",
+                  }}
+                />
+                Open to new roles · Available January 2027
+              </Box>
 
               <Typography
                 variant="h2"
@@ -65,6 +76,18 @@ export const Hero = () => {
               </Typography>
 
               <Typography
+                component="p"
+                sx={{
+                  fontSize: { xs: "1.1rem", md: "1.25rem" },
+                  fontWeight: 600,
+                  color: "text.primary",
+                  mb: 1.5,
+                }}
+              >
+                Senior Full Stack & Backend Engineer
+              </Typography>
+
+              <Typography
                 variant="body1"
                 sx={{
                   fontSize: { xs: "1.05rem", md: "1.15rem" },
@@ -84,27 +107,27 @@ export const Hero = () => {
                 spacing={2}
                 sx={{ mb: 2 }}
               >
-                <Link href="/projects" passHref style={{ textDecoration: "none" }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    endIcon={<ArrowForwardIcon />}
-                    sx={{ px: 3, py: 1.25 }}
-                  >
-                    View Projects
-                  </Button>
-                </Link>
+                <Button
+                  component={Link}
+                  href="/projects"
+                  variant="contained"
+                  size="large"
+                  endIcon={<ArrowForwardIcon />}
+                  sx={{ px: 3, py: 1.25 }}
+                >
+                  View Projects
+                </Button>
 
-                <Link href="/resume" passHref style={{ textDecoration: "none" }}>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<DescriptionOutlinedIcon />}
-                    sx={{ px: 3, py: 1.25 }}
-                  >
-                    Resume & Experience
-                  </Button>
-                </Link>
+                <Button
+                  component={Link}
+                  href="/resume"
+                  variant="outlined"
+                  size="large"
+                  startIcon={<DescriptionOutlinedIcon />}
+                  sx={{ px: 3, py: 1.25 }}
+                >
+                  Resume & Experience
+                </Button>
 
                 <Button
                   variant="text"
@@ -124,28 +147,16 @@ export const Hero = () => {
           <Grid2 size={{ xs: 12, md: 5 }}>
             <Box
               sx={{
-                position: "relative",
                 maxWidth: "420px",
                 mx: "auto",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  inset: "-8px",
-                  borderRadius: "20px",
-                  background: "linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(192, 132, 252, 0.15) 100%)",
-                  zIndex: 0,
-                  filter: "blur(12px)",
-                },
               }}
             >
               <Box
                 sx={{
-                  position: "relative",
                   borderRadius: "16px",
                   overflow: "hidden",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
-                  boxShadow: "0 12px 32px rgba(0, 0, 0, 0.5)",
-                  zIndex: 1,
+                  border: "1px solid rgba(99, 102, 241, 0.3)",
+                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
                   backgroundColor: "#111827",
                 }}
               >
@@ -153,6 +164,7 @@ export const Hero = () => {
                   src={hero}
                   alt="Travis Stinebaugh"
                   priority
+                  sizes="(max-width: 900px) 90vw, 420px"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -164,6 +176,6 @@ export const Hero = () => {
           </Grid2>
         </Grid2>
       </Box>
-    </motion.div>
+    </div>
   );
 };

@@ -1,5 +1,4 @@
-"use-client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Typography,
   Box,
@@ -12,16 +11,10 @@ import {
   Grid2,
   Paper,
 } from "@mui/material";
-import { motion } from "framer-motion";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import ReCAPTCHA from "react-google-recaptcha";
-
-const fadeIn = {
-  initial: { opacity: 0, y: 15 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-};
 
 interface FormData {
   name: string;
@@ -50,13 +43,35 @@ export const Contact = () => {
     severity: "success",
   });
 
-  const [isVerified, setIsVerified] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [isSending, setIsSending] = useState(false);
+  const isVerified = recaptchaToken !== null;
+
+  // Defer loading Google's reCAPTCHA script until the contact section is close to view.
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isNearView, setIsNearView] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setIsNearView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsNearView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
-      console.log("RECAPTCHA_SITE_KEY is not set");
-    }
     if (!isVerified) {
       setSnackbar({
         open: true,
@@ -65,13 +80,14 @@ export const Contact = () => {
       });
       return;
     }
+    setIsSending(true);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       if (response.ok) {
@@ -81,6 +97,8 @@ export const Contact = () => {
           severity: "success",
         });
         setFormData({ name: "", email: "", message: "", honeypot: "" });
+        // Tokens are single-use, so ask for a fresh CAPTCHA before another message.
+        setRecaptchaToken(null);
       } else {
         const errorData = await response.json();
         setSnackbar({
@@ -96,39 +114,32 @@ export const Contact = () => {
         message: "An error occurred while sending the message.",
         severity: "error",
       });
+    } finally {
+      setIsSending(false);
     }
   };
 
-  const handleEmailClick = async (e: React.FormEvent) => {
+  const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (!isVerified) {
+    const encodedEmail = process.env.NEXT_PUBLIC_ENCODED_EMAIL;
+    if (!isVerified || !encodedEmail) {
       setSnackbar({
         open: true,
-        message: "Please verify CAPTCHA before sending an email",
+        message: encodedEmail
+          ? "Please verify CAPTCHA before sending an email"
+          : "Email is unavailable right now. Please use the form or LinkedIn.",
         severity: "error",
       });
-    } else {
-      const email = atob(process.env.NEXT_PUBLIC_ENCODED_EMAIL!);
-      window.location.href = `mailto:${email}`;
+      return;
     }
-  };
-
-  const handleRecaptchaChange = async (token: string | null) => {
-    if (token) {
-      setIsVerified(true);
-    }
+    window.location.href = `mailto:${atob(encodedEmail)}`;
   };
 
   return (
     <>
-      <Box id="contact" sx={{ py: { xs: 6, md: 8 } }}>
+      <Box id="contact" ref={sectionRef} sx={{ py: { xs: 6, md: 8 }, scrollMarginTop: "80px" }}>
         <Container maxWidth="md">
-          <motion.div
-            variants={fadeIn}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
+          <div>
             <Paper
               sx={{
                 p: { xs: 3, sm: 5 },
@@ -139,6 +150,7 @@ export const Contact = () => {
             >
               <Typography
                 variant="h4"
+                component="h2"
                 align="center"
                 sx={{
                   fontWeight: 700,
@@ -163,6 +175,8 @@ export const Contact = () => {
                     <TextField
                       fullWidth
                       label="Name"
+                      name="name"
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -175,6 +189,8 @@ export const Contact = () => {
                       fullWidth
                       label="Email"
                       type="email"
+                      name="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -187,6 +203,8 @@ export const Contact = () => {
                     <TextField
                       fullWidth
                       label="Leave this field empty"
+                      tabIndex={-1}
+                      autoComplete="off"
                       value={formData.honeypot}
                       onChange={(e) =>
                         setFormData({ ...formData, honeypot: e.target.value })
@@ -212,20 +230,25 @@ export const Contact = () => {
                       variant="contained"
                       size="large"
                       fullWidth
+                      disabled={isSending}
                       sx={{ py: 1.25, fontWeight: 600 }}
                     >
-                      Send Message
+                      {isSending ? "Sending…" : "Send Message"}
                     </Button>
                   </Grid2>
                 </Grid2>
               </Box>
 
               {!isVerified && (
-                <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
-                  <ReCAPTCHA
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                    onChange={handleRecaptchaChange}
-                  />
+                <Box sx={{ mt: 3, display: "flex", justifyContent: "center", minHeight: 78 }}>
+                  {isNearView && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                      theme="dark"
+                      onChange={setRecaptchaToken}
+                      onExpired={() => setRecaptchaToken(null)}
+                    />
+                  )}
                 </Box>
               )}
 
@@ -287,7 +310,7 @@ export const Contact = () => {
                 </IconButton>
               </Box>
             </Paper>
-          </motion.div>
+          </div>
         </Container>
       </Box>
 

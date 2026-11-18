@@ -1,11 +1,5 @@
 import { Typography, Box, Grid2, Container, Paper, Chip, Stack } from "@mui/material";
-import { motion } from "framer-motion";
 import Head from "next/head";
-
-const fadeIn = {
-  initial: { opacity: 0, y: 15 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-};
 
 const cardSx = {
   p: { xs: 2.5, sm: 3.5 },
@@ -18,14 +12,15 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About - Travis Stinebaugh</title>
+        <title key="title">About - Travis Stinebaugh</title>
         <meta
+          key="description"
           name="description"
           content="Learn more about Travis Stinebaugh, his background in computer science, software engineering career, and technical expertise."
         />
       </Head>
       <Container>
-        <motion.div initial="initial" animate="animate" variants={fadeIn}>
+        <div>
           <Box sx={{ py: { xs: 3, md: 5 } }}>
             <Box sx={{ mb: 4 }}>
               <Typography
@@ -141,7 +136,7 @@ export default function About() {
               </Grid2>
             </Grid2>
           </Box>
-        </motion.div>
+        </div>
       </Container>
     </>
   );

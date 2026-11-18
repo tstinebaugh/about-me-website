@@ -5,7 +5,6 @@ import {
   Grid2,
   Button,
 } from "@mui/material";
-import { motion } from "framer-motion";
 import DownloadIcon from "@mui/icons-material/Download";
 import Head from "next/head";
 import { resumeData } from "../data/resume";
@@ -18,26 +17,15 @@ export default function Resume() {
   return (
     <>
       <Head>
-        <title>Resume - Travis Stinebaugh</title>
+        <title key="title">Resume - Travis Stinebaugh</title>
         <meta
+          key="description"
           name="description"
           content="Resume and professional experience of Travis Stinebaugh, Senior Full Stack & Backend Engineer."
         />
       </Head>
       <Container>
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1,
-              },
-            },
-          }}
-        >
+        <div>
           <Box sx={{ py: { xs: 3, md: 5 } }}>
             <Box
               sx={{
@@ -110,7 +98,7 @@ export default function Resume() {
               </Grid2>
             </Grid2>
           </Box>
-        </motion.div>
+        </div>
       </Container>
     </>
   );

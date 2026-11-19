@@ -89,7 +89,7 @@ export const projects: Project[] = [
   {
     title: "Open Source: rickb777/date (Go)",
     description:
-      "While building Discovery+ ingestion, I needed ISO 8601 durations with millisecond precision, which the Go date package's Period type couldn't represent. I opened a pull request adding backward-compatible millisecond-precision period types with tests (+339 lines). The maintainer chose to rewrite Period as the standalone rickb777/period package and noted that it incorporates the PR indirectly.",
+      "Discovery+ metadata ingestion needed ISO 8601 durations with millisecond precision, which the Go date package's Period type couldn't represent. I built backward-compatible millisecond-precision period types with tests (+339 lines) in a fork that ran in production for the ingestion pipeline, then proposed the change upstream. The maintainer incorporated the approach into the rewritten rickb777/period package.",
     image: "/rickb777_date_pr.png",
     technologies: ["Go", "ISO 8601", "Open Source", "Unit Testing"],
     githubUrl: "https://github.com/rickb777/date/pull/21",
